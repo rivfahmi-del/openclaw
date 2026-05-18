@@ -2,10 +2,12 @@ FROM node:22
 
 WORKDIR /app
 
+RUN npm install -g pnpm
+
 COPY . .
 
-RUN npm install -g pnpm
-RUN pnpm install
+RUN pnpm config set registry https://registry.npmjs.org/
+RUN pnpm install --no-frozen-lockfile
 
 EXPOSE 3000
 
